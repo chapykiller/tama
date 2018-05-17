@@ -5,6 +5,10 @@ var PetSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    type: {
+        type: 'dog' | 'cat',
+        required
+    },
     age: {
         type: Number
     },

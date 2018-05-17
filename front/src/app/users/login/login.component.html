@@ -9,14 +9,15 @@
       <div class="account-wall">
         <ngb-alert class="text-center" *ngIf="message!==''" [type]="'warning'" (close)="closeAlert()">{{ message }}</ngb-alert>
         <form class="form-signin" (submit)="login()">
-          <input type="text" class="form-control" placeholder="Username" name="username" [(ngModel)]="credentials.username" required autofocus>
+          <input type="text" class="form-control" placeholder="Username" name="username" [(ngModel)]="credentials.username" required
+            autofocus>
           <input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="credentials.password" required>
           <button class="btn btn-lg btn-primary btn-block" type="submit">
             Sign in</button>
           <span class="clearfix"></span>
         </form>
       </div>
-      <a [routerLink]="['/register']" class="text-center new-account">Create an account </a>
+      <a [routerLink]="['../register']" class="text-center new-account">Create an account </a>
     </div>
   </div>
 </div>

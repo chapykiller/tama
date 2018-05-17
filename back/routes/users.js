@@ -9,13 +9,10 @@ var auth = jwt({
     userProperty: 'payload'
 });
 
-var ctrlProfile = require('../controllers/profile');
 var ctrlAuth = require('../controllers/authentication');
 
-router.get('/profile', auth, ctrlProfile.profileRead);
-
+router.get('/profile', auth, ctrlAuth.profileRead);
 router.post('/register', ctrlAuth.register);
-
 router.post('/login', passport.authenticate('local', {session: false}), ctrlAuth.login);
 
 module.exports = router;

@@ -1,75 +1,48 @@
-var Pet = require('../models/pet');
-var User = require('../models/users');
+var PetService = require('../services/pet');
 
-exports.create = function(req, res) {
+exports.create = async function(req, res) {
+    var pet = {
+        name: req.body.name,
+        type: req.body.type,
+        age: 0,
+        hunger: 10
+    }
 
-    User
-        .findById(req.payload._id)
-        .exec(function (err, user) {
-            // If a user is found
-            if (user) {
-                user.pets.push({
-                    name: req.body.name,
-                    age: 0,
-                    hunger: 10
-                });
-                var pet = user.pets[user.pets.length - 1];
-                user.save(function(err) {
-                    res.status(200);
-                    res.json({
-                        "name": pet.name,
-                        "age": pet.age,
-                        "hunger": pet.hunger
-                    });
-                });
-            }
-            else {
-                res.status(401).json("User not found");
-            }
-    });
+    try {
+        let createdPet = await PetService.create(req.payload._id, pet);
+        return res.status(201).json({ status: 201, data: createdPet, message: "Pet successfully created" });
+    }
+    catch(e) {
+        return res.status(400).json({ status:400, message: "Pet not created"  });
+    }
 };
 
-exports.feed = function(req, res) {
-    User
-        .findById(req.payload._id)
-        .exec(function (err, user) {
-            if(user) {
-                user.pets.id(req.body._id).feed();
-                user.save(function (err) {
-                    res.status(200);
-                    res.json({
-                        "hunger": user.pets.id(req.body._id).hunger
-                    });
-                });
-            }
-    });
+exports.feed = async function(req, res) {
+    try {
+        let pet = await PetService.feed(req.payload._id, req.body._id);
+        return res.status(200).json({ status: 200, data: pet, message: "Pet successfully fed" });
+    }
+    catch(e) {
+        return res.status(400).json({ status: 400, message: "Error feeding pet" });
+    }
 };
 
-exports.list = function(req, res) {
-    User
-        .findById(req.payload._id)
-        .exec(function (err, user) {
-            if (user) {
-                res.status(200);
-                res.json({
-                    pets: user.pets
-                });
-            }
-    });
+exports.list = async function(req, res) {
+    try {
+        let pets = await PetService.list(req.payload._id);
+        return res.status(200).json({ status: 200, data: pets, message: "Pets listed" });
+    }
+    catch(e) {
+        return res.status(400).json({ status: 400, message: "Error listing pets" });
+    }
 };
 
-exports.delete = function(req, res) {
-    User
-        .findById(req.payload._id)
-        .exec(function (err, user) {
-            if (user) {
-                user.pets.pull(user.pets.id(req.body._id));
-                user.save(function (err) {
-                    res.status(200);
-                    res.json({
-                        pets: user.pets
-                    });
-                });
-            }
-    });
+exports.delete = async function(req, res) {
+    try {
+        let pets = await PetService.delete(req.payload._id, req.params.id);
+        return res.status(200).json({ status: 200, data: pets, message: "Pet deleted" });
+    }
+    catch(e) {
+        return res.status(400).json({ status: 400, message: "Error deleting pet" })''
+    }
 };
