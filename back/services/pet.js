@@ -6,14 +6,15 @@ exports.create = async function(userId, pet) {
         let user = await User.findById(userId);
         if(user) {
             user.pets.push(pet);
-            user = await user.save;
+            user = await user.save();
 
-            return user.pet[user.pet.length - 1];
+            return user.pets[user.pets.length - 1];
         }
 
         return null;
     }
     catch(e) {
+        console.error(e);
         throw Error("Error creating pet");
     }
 };
@@ -22,9 +23,9 @@ exports.feed = async function(userId, petId) {
     try {
         let user = await User.findById(userId);
         if(user) {
-            let pet = user.pets.id(petId)
+            let pet = user.pets[petId];
             pet.feed();
-            user = await user.save;
+            user = await user.save();
 
             return pet;
         }
@@ -54,7 +55,7 @@ exports.delete = async function(userId, petId) {
     try {
         let user = await User.findById(userId);
         if(user) {
-            user.pets.pull(user.pets.id(petId));
+            user.pets.pull(user.pets[petId]);
             user = await user.save();
 
             return user.pets;

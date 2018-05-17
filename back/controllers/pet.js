@@ -19,7 +19,7 @@ exports.create = async function(req, res) {
 
 exports.feed = async function(req, res) {
     try {
-        let pet = await PetService.feed(req.payload._id, req.body._id);
+        let pet = await PetService.feed(req.payload._id, req.body.id);
         return res.status(200).json({ status: 200, data: pet, message: "Pet successfully fed" });
     }
     catch(e) {
@@ -43,6 +43,6 @@ exports.delete = async function(req, res) {
         return res.status(200).json({ status: 200, data: pets, message: "Pet deleted" });
     }
     catch(e) {
-        return res.status(400).json({ status: 400, message: "Error deleting pet" })''
+        return res.status(400).json({ status: 400, message: "Error deleting pet" });
     }
 };

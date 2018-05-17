@@ -14,6 +14,6 @@ var ctrlPet = require('../controllers/pet');
 router.post('/', auth, ctrlPet.create);
 router.put('/', auth, ctrlPet.feed);
 router.get('/', auth, ctrlPet.list);
-router.delete('/', auth, ctrlPet.delete);
+router.delete('/:id', auth, ctrlPet.delete);
 
 module.exports = router;

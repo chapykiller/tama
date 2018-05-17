@@ -6,8 +6,9 @@ var PetSchema = new mongoose.Schema({
         required: true
     },
     type: {
-        type: 'dog' | 'cat',
-        required
+        type: String,
+        enum: ['dog', 'cat'],
+        required: true
     },
     age: {
         type: Number
