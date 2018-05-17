@@ -7,13 +7,15 @@ import { UsersRoutingModule } from './users-routing.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
+import { PetModule } from "../pet/pet.module";
 
 @NgModule({
   imports: [
     CommonModule,
     UsersRoutingModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    PetModule
   ],
   declarations: [LoginComponent, RegisterComponent, ProfileComponent]
 })

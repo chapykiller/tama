@@ -23,7 +23,7 @@ exports.feed = async function(userId, petId) {
     try {
         let user = await User.findById(userId);
         if(user) {
-            let pet = user.pets[petId];
+            let pet = user.pets.id(petId);
             pet.feed();
             user = await user.save();
 
@@ -55,7 +55,7 @@ exports.delete = async function(userId, petId) {
     try {
         let user = await User.findById(userId);
         if(user) {
-            user.pets.pull(user.pets[petId]);
+            user.pets.pull(user.pets.id(petId));
             user = await user.save();
 
             return user.pets;
