@@ -7,7 +7,7 @@ import {  } from "rxjs/operators";
 export interface PetDetails {
   _id: string,
   name: string;
-  type: 'dog' | 'cat';
+  type: string;
   age: number;
   hunger: number;
 }

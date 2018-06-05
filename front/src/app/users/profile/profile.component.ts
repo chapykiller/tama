@@ -8,8 +8,11 @@ import { AuthenticationService, UserDetails } from "../authentication.service";
 })
 export class ProfileComponent implements OnInit {
   details: UserDetails;
+  renderPet: boolean;
 
-  constructor(private auth: AuthenticationService) { }
+  constructor(private auth: AuthenticationService) {
+    this.renderPet = true;
+  }
 
   ngOnInit() {
     this.auth.profile().subscribe(user => {

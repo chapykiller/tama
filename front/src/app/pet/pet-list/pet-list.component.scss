@@ -1,0 +1,9 @@
+@for $i from 0 through 12 {
+  .vert-offset-top-#{$i} {
+    margin-top: #{$i}em;
+  }
+
+  .vert-offset-bottom-#{$i} {
+    margin-bottom: #{$i}em;
+  }
+}

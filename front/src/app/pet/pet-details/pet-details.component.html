@@ -2,13 +2,41 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<h2>{{ petDetails.name | uppercase }} Details</h2>
-<div>
-  <span>type: </span>{{ petDetails.type }}
-</div>
-<div>
-  <span>age: </span>{{ petDetails.age }}
-</div>
-<div>
-  <span>hunger: </span>{{ petDetails.hunger }}
-</div>
+<ul class="event-list">
+  <li>
+    <!-- <time datetime="2014-07-20 0000">
+      <span class="day">8</span>
+      <span class="month">Jul</span>
+      <span class="year">2014</span>
+      <span class="time">12:00 AM</span>
+    </time> -->
+    <div class="pet">
+      <div class="id">{{ petIndex }}</div>
+    </div>
+    <div class="info">
+      <h2 class="title">{{ petDetails.name }}</h2>
+      <p class="desc">{{ petDetails.type | uppercase }}</p>
+      <br>
+      <p class="desc">&nbsp;&nbsp;&nbsp; Age: {{ petDetails.age }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Hunger: {{ petDetails.hunger }}</p>
+      <ul>
+        <li style="width:100%;">
+          <a (click)="feed()">
+            <span class="fa fa-apple"></span> Feed
+          </a>
+        </li>
+        <!-- <li style="width:50%;">
+          <span class="fa fa-money"></span> $39.99
+        </li> -->
+      </ul>
+    </div>
+    <div class="social">
+      <ul>
+        <li class="facebook" style="width:100%;">
+          <a (click)="delete()">
+            <span class="fa fa-times" style="color: rgb(195,50,100); font-size: 150%"></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </li>
+</ul>

@@ -1,0 +1,18 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+<div class="account-wall">
+  <form class="form-signin" (submit)="create()">
+    <input type="text" class="form-control" placeholder="name" name="name" [(ngModel)]="pet.name" required
+      autofocus>
+    <select class="form-control" id="type" name="type" [(ngModel)]="pet.type" required>
+      <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+    </select>
+    &nbsp;
+    <button class="btn btn-lg btn-primary btn-block" type="submit">
+      Create Pet</button>
+    <span class="clearfix"></span>
+  </form>
+</div>

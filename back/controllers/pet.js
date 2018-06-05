@@ -5,7 +5,7 @@ exports.create = async function(req, res) {
         name: req.body.name,
         type: req.body.type,
         age: 0,
-        hunger: 10
+        hunger: 0
     }
 
     try {
